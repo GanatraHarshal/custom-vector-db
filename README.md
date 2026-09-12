@@ -26,7 +26,7 @@ The 50,000 text embeddings are mocked using synthetically generated clustered ve
 
 ## Performance Benchmark
 The graph below illustrates the inverse relationship between query speed and recall accuracy as the `nprobe` hyperparameter increases.
-![alt text](benchmark_results-1.png)
+![alt text](benchmark_results.png)
 
 ## The Deletion Constraint
 In an Inverted File (IVF) index, performing an in-place delete is computationally prohibitive. Our IVF structure relies on contiguous NumPy arrays for L2 distance vectorization and static memory pointers within the adjacency lists. Deleting a vector requires an O(N) reallocation of the underlying dense matrix, shifting all subsequent indices, which then forces a complete O(N) traversal and rebuild of the IVF adjacency lists to remap the shifted pointers. Additionally, frequent deletions degrade cluster centroid validity, necessitating a full K-means retraining cycle to prevent precision decay.
